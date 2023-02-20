@@ -1,0 +1,27 @@
+- name: Install packages on Red Hat or Ubuntu servers
+  hosts: localhost, all
+  become: yes
+  tasks:
+    - name: Install packages on Red Hat servers
+      when: ansible_distribution == 'RedHat'
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - nano
+        - wget
+        - vim
+        - zip
+        - unzip
+
+    - name: Install packages on Ubuntu servers
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - nano
+        - wget
+        - vim
+        - zip
+        - unzip

@@ -1,0 +1,13 @@
+# This cript will check the ansible distribution and package manager for the ansible local host and other host servers
+
+- hosts: localhost, all
+  become: true
+  tasks:
+    - name: Debug distribution and package manager
+      debug:
+        var: ansible_distribution
+
+    - name: Debug package manager
+      debug:
+        var: ansible_pkg_mgr
+

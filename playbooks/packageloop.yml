@@ -1,0 +1,14 @@
+- hosts: localhost, all
+  become: true
+  tasks:
+   - name: Install list of packages on redhat servers
+     yum:
+       name: ['nano', 'wget', 'vim', 'zip', 'unzip']
+     when: ("ansible_distribution" == "Amazon")
+   - name: Install list of packages on ubuntu servers
+     package:
+       name: ['nano', 'wget', 'vim', 'zip', 'unzip']
+     when: ("ansible_distribution" == "Ubuntu")
+#  vars:
+#    ansible_connection: ssh
+
