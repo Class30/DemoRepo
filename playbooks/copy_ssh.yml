@@ -1,0 +1,10 @@
+- name: Copy SSH key to Class30demoServer
+  hosts: Class30demoServer
+  vars:
+    ssh_public_key: "{{ lookup('file', '/home/ansible/.ssh/id_rsa.pub') }}"
+  tasks:
+    - name: Add SSH key to authorized_keys
+      authorized_key:
+        user: "{{ ansible_user }}"
+        key: "{{ ssh_public_key }}"
+        state: present
