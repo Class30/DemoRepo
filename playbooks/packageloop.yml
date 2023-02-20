@@ -4,11 +4,14 @@
    - name: Install list of packages on redhat servers
      yum:
        name: ['nano', 'wget', 'vim', 'zip', 'unzip']
-     when: ("ansible_distribution" == "Amazon")
+       state: present
+     when: ansible_distribution == "Amazon"
+
    - name: Install list of packages on ubuntu servers
-     package:
+     apt:
        name: ['nano', 'wget', 'vim', 'zip', 'unzip']
-     when: ("ansible_distribution" == "Ubuntu")
+       state: present
+     when: ansible_distribution == "Ubuntu"
 #  vars:
 #    ansible_connection: ssh
 

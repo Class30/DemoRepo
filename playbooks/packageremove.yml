@@ -1,0 +1,24 @@
+- hosts: localhost, 
+  become: true
+  tasks:
+    - name: Remove list of packages on Red Hat servers
+      yum:
+        name:
+          - nano
+          - wget
+          - vim
+          - zip
+          - unzip
+        state: absent
+      when: ansible_distribution == 'RedHat'
+
+    - name: Remove list of packages on Ubuntu servers
+      apt:
+        name:
+          - nano
+          - wget
+          - vim
+          - zip
+          - unzip
+        state: absent
+      when: ansible_distribution == 'Ubuntu'
